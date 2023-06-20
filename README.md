@@ -5,8 +5,6 @@ Búsqueda por Latitud Longitud - Buscar por posición espacial
 Ejemplo de Búsqueda por coordenadas a partir de un punto dado en este enlace:<br>
 `<link>` :<http://bogarin.com.mx/tiendita/>
 
-[![](http://bogarin.com.mx/tiendita/)](https://github.com/theboga/Busqueda_latitud_longitud/assets/9596542/25af6796-7420-41f6-a8f4-da0198e8744f "Ejemplo de Búsqueda")
-
 <a href="http://bogarin.com.mx/tiendita/" ><img width="621" alt="imagen" src="https://github.com/theboga/Busqueda_latitud_longitud/assets/9596542/25af6796-7420-41f6-a8f4-da0198e8744f"></a>
 
 
@@ -44,22 +42,22 @@ sin(radians(lat)))) AS distance FROM oxxos HAVING distance < 2 ORDER BY distance
 
 Ahora, analicemos cómo funciona esta sentencia SQL:
 
-    La parte "SELECT nombre, lat, lon," indica qué columnas queremos obtener en el resultado. En este caso, se obtendrá el nombre del elemento, su latitud, longitud y también la distancia calculada.
+    -La parte "SELECT nombre, lat, lon," indica qué columnas queremos obtener en el resultado. En este caso, se obtendrá el nombre del elemento, su latitud, longitud y también la distancia calculada.
 
-    La parte "(6371 * acos(cos(radians(20.673519)) * cos(radians(lat)) * cos(radians(lon) - radians(-103.354912)) + sin(radians(20.673519)) * sin(radians(lat))))" calcula la distancia entre nuestra ubicación y cada elemento de la tabla utilizando funciones trigonométricas. Esta fórmula se basa en la fórmula del círculo de la Tierra para calcular distancias en kilómetros.
+    -La parte "(6371 * acos(cos(radians(20.673519)) * cos(radians(lat)) * cos(radians(lon) - radians(-103.354912)) + sin(radians(20.673519)) * sin(radians(lat))))" calcula la distancia entre nuestra ubicación y cada elemento de la tabla utilizando funciones trigonométricas. Esta fórmula se basa en la fórmula del círculo de la Tierra para calcular distancias en kilómetros.
 
-    El número 6371 es el radio medio de la tierra expresado en Km. Se usa el radio medio ya que no en todos lados se usa el mismo
+    -El número 6371 es el radio medio de la tierra expresado en Km. Se usa el radio medio ya que no en todos lados se usa el mismo
 
-    La parte "AS distance" asigna un nombre a la columna que almacena la distancia calculada.
+    -La parte "AS distance" asigna un nombre a la columna que almacena la distancia calculada.
 
-    La parte "FROM oxxos" indica que estamos seleccionando los elementos de la tabla llamada "oxxos".
+    -La parte "FROM oxxos" indica que estamos seleccionando los elementos de la tabla llamada "oxxos".
 
-    La parte "HAVING distance < 2" establece el criterio de búsqueda, en este caso, se seleccionan solo los elementos cuya distancia sea menor a 2 kilómetros.
+    -La parte "HAVING distance < 2" establece el criterio de búsqueda, en este caso, se seleccionan solo los elementos cuya distancia sea menor a 2 kilómetros.
 
-    La parte "ORDER BY distance" ordena los resultados según la distancia, de menor a mayor.
+    -La parte "ORDER BY distance" ordena los resultados según la distancia, de menor a mayor.
 
 
-* El valor 6371 utilizado en la fórmula del algoritmo representa el radio medio de la Tierra expresado en kilómetros. Es una aproximación comúnmente aceptada para el radio promedio de nuestro planeta. Al utilizar este valor, podemos calcular distancias en kilómetros de manera más precisa en el contexto del algoritmo.
+_* El valor 6371 utilizado en la fórmula del algoritmo representa el radio medio de la Tierra expresado en kilómetros. Es una aproximación comúnmente aceptada para el radio promedio de nuestro planeta. Al utilizar este valor, podemos calcular distancias en kilómetros de manera más precisa en el contexto del algoritmo._
 
 En resumen, este algoritmo utiliza una sentencia SQL para calcular la distancia entre nuestra ubicación y cada elemento de la tabla, utilizando funciones trigonométricas. Luego, filtra los elementos que se encuentran dentro del radio deseado y los ordena según su distancia. Esto nos permite obtener los elementos deseados que se encuentran dentro del radio de acción especificado.
 

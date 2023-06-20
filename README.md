@@ -14,7 +14,8 @@ basándome en la fórmula del círculo de la Tierra para calcular distancias en 
 
 Este algoritmo resuelve un problema común en la actualidad: determinar qué elementos se encuentran dentro de un radio de acción determinado, dada nuestra ubicación geográfica actual y la ubicación geográfica de esos elementos.
 
-Imaginemos que tenemos la información de la ubicación geográfica (latitud y longitud) de varios elementos, como personas, comercios o poblaciones. Queremos saber qué elementos se encuentran dentro de un círculo de radio determinado, con nuestro punto de ubicación como centro. <img width="214" alt="imagen" src="https://github.com/theboga/Busqueda_latitud_longitud/assets/9596542/bcec8b59-1ff5-4cda-89de-09010f33be79">
+Imaginemos que tenemos la información de la ubicación geográfica (latitud y longitud) de varios elementos, como personas, comercios o poblaciones. Queremos saber qué elementos se encuentran dentro de un círculo de radio determinado, con nuestro punto de ubicación como centro.
+<img width="214" alt="imagen" src="https://github.com/theboga/Busqueda_latitud_longitud/assets/9596542/bcec8b59-1ff5-4cda-89de-09010f33be79">
 
 
 Para resolver esto, el algoritmo utiliza una base de datos MySQL, donde los elementos están almacenados en una tabla llamada "oxxos". Esta tabla contiene las coordenadas geográficas de cada elemento, representadas por los campos "lat" y "lon". Además, también hay un campo llamado "nombre" que almacena el nombre del elemento.
@@ -42,19 +43,26 @@ sin(radians(lat)))) AS distance FROM oxxos HAVING distance < 2 ORDER BY distance
 
 Ahora, analicemos cómo funciona esta sentencia SQL:
 
-    -La parte "SELECT nombre, lat, lon," indica qué columnas queremos obtener en el resultado. En este caso, se obtendrá el nombre del elemento, su latitud, longitud y también la distancia calculada.
+    -La parte "SELECT nombre, lat, lon," 
+indica qué columnas queremos obtener en el resultado. En este caso, se obtendrá el nombre del elemento, su latitud, longitud y también la distancia calculada.
 
-    -La parte "(6371 * acos(cos(radians(20.673519)) * cos(radians(lat)) * cos(radians(lon) - radians(-103.354912)) + sin(radians(20.673519)) * sin(radians(lat))))" calcula la distancia entre nuestra ubicación y cada elemento de la tabla utilizando funciones trigonométricas. Esta fórmula se basa en la fórmula del círculo de la Tierra para calcular distancias en kilómetros.
+    -La parte "(6371 * acos(cos(radians(20.673519)) * cos(radians(lat)) * cos(radians(lon) - radians(-103.354912)) + sin(radians(20.673519)) * sin(radians(lat))))" 
+calcula la distancia entre nuestra ubicación y cada elemento de la tabla utilizando funciones trigonométricas. Esta fórmula se basa en la fórmula del círculo de la Tierra para calcular distancias en kilómetros.
 
-    -El número 6371 es el radio medio de la tierra expresado en Km. Se usa el radio medio ya que no en todos lados se usa el mismo
+    -El número 6371 es el radio medio de la tierra expresado en Km. 
+Se usa el radio medio ya que no en todos lados se usa el mismo
 
-    -La parte "AS distance" asigna un nombre a la columna que almacena la distancia calculada.
+    -La parte "AS distance" 
+asigna un nombre a la columna que almacena la distancia calculada.
 
-    -La parte "FROM oxxos" indica que estamos seleccionando los elementos de la tabla llamada "oxxos".
+    -La parte "FROM oxxos" 
+indica que estamos seleccionando los elementos de la tabla llamada "oxxos".
 
-    -La parte "HAVING distance < 2" establece el criterio de búsqueda, en este caso, se seleccionan solo los elementos cuya distancia sea menor a 2 kilómetros.
+    -La parte "HAVING distance < 2" 
+establece el criterio de búsqueda, en este caso, se seleccionan solo los elementos cuya distancia sea menor a 2 kilómetros.
 
-    -La parte "ORDER BY distance" ordena los resultados según la distancia, de menor a mayor.
+    -La parte "ORDER BY distance" 
+ordena los resultados según la distancia, de menor a mayor.
 
 
 _* El valor 6371 utilizado en la fórmula del algoritmo representa el radio medio de la Tierra expresado en kilómetros. Es una aproximación comúnmente aceptada para el radio promedio de nuestro planeta. Al utilizar este valor, podemos calcular distancias en kilómetros de manera más precisa en el contexto del algoritmo._

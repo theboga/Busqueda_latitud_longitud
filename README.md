@@ -2,8 +2,11 @@
 Búsqueda por Latitud Longitud - Buscar por posición espacial
 
 
-Ejemplo de Búsqueda por coordenadas a partir de un punto dado
-[http://www.bogarin.com.mx/tiendita](http://bogarin.com.mx/tiendita/)
+Ejemplo de Búsqueda por coordenadas a partir de un punto dado en este enlace:<br>
+`<link>` :<http://bogarin.com.mx/tiendita/>
+
+[![](http://bogarin.com.mx/tiendita/)](https://github.com/theboga/Busqueda_latitud_longitud/assets/9596542/25af6796-7420-41f6-a8f4-da0198e8744f "Ejemplo de Búsqueda")
+
 <a href="http://bogarin.com.mx/tiendita/" ><img width="621" alt="imagen" src="https://github.com/theboga/Busqueda_latitud_longitud/assets/9596542/25af6796-7420-41f6-a8f4-da0198e8744f"></a>
 
 
@@ -30,7 +33,11 @@ Centro (latitud, longitud) = (20.673519, -103.354912)
 
 La sentencia SQL que se utiliza para obtener los elementos deseados es la siguiente:
 
-SELECT nombre, lat, lon, (6371 * acos(cos(radians(20.673519)) * cos(radians(lat)) * cos(radians(lon) - radians(-103.354912)) + sin(radians(20.673519)) * sin(radians(lat)))) AS distance FROM oxxos HAVING distance < 2 ORDER BY distance;
+```sql
+SELECT nombre, lat, lon, (6371 * acos(cos(radians(20.673519)) * 
+cos(radians(lat)) * cos(radians(lon) - radians(-103.354912)) + sin(radians(20.673519)) * 
+sin(radians(lat)))) AS distance FROM oxxos HAVING distance < 2 ORDER BY distance;
+```
 
 <img width="1190" alt="imagen" src="https://github.com/theboga/Busqueda_latitud_longitud/assets/9596542/084437a7-c970-4a7e-b983-b176cb10821c">
 
@@ -45,33 +52,22 @@ Ahora, analicemos cómo funciona esta sentencia SQL:
 
     La parte "AS distance" asigna un nombre a la columna que almacena la distancia calculada.
 
-    La parte "FROM mitabla" indica que estamos seleccionando los elementos de la tabla llamada "oxxos".
+    La parte "FROM oxxos" indica que estamos seleccionando los elementos de la tabla llamada "oxxos".
 
     La parte "HAVING distance < 2" establece el criterio de búsqueda, en este caso, se seleccionan solo los elementos cuya distancia sea menor a 2 kilómetros.
 
     La parte "ORDER BY distance" ordena los resultados según la distancia, de menor a mayor.
 
+
+* El valor 6371 utilizado en la fórmula del algoritmo representa el radio medio de la Tierra expresado en kilómetros. Es una aproximación comúnmente aceptada para el radio promedio de nuestro planeta. Al utilizar este valor, podemos calcular distancias en kilómetros de manera más precisa en el contexto del algoritmo.
+
 En resumen, este algoritmo utiliza una sentencia SQL para calcular la distancia entre nuestra ubicación y cada elemento de la tabla, utilizando funciones trigonométricas. Luego, filtra los elementos que se encuentran dentro del radio deseado y los ordena según su distancia. Esto nos permite obtener los elementos deseados que se encuentran dentro del radio de acción especificado.
-<img width="749" alt="imagen" src="https://github.com/theboga/Busqueda_latitud_longitud/assets/9596542/3decb6af-e59d-4b25-9bb5-c837338a84b7">
 
 
-<img width="935" alt="imagen" src="https://github.com/theboga/Busqueda_latitud_longitud/assets/9596542/d4057ebd-4480-42aa-9bba-73a8a2de4f1f">
+<img width="936" alt="imagen" src="https://github.com/theboga/Busqueda_latitud_longitud/assets/9596542/2d1e33b6-b07a-42b7-a9e3-38de553d8e6a">
 
 
 
-Mi Posición : Latitud -> 20.673519, Longitud -> -103.354912
 
-50YNM DEPORTIVO INDEPENDENCIA GDL SIETE COLINAS 20.69453503 -103.33288743
-CADENA COMERCIAL OXXO MARTIN MACIAS 20.72763470 -103.32526888
-COMERCIO AL POR MENOR EN MINISÚPER PLUTARCO ELÍAS CALLES 20.68828484 -103.29063168
-GASOLINERA OXXO SIERRA NEVADA 20.68623177 -103.33553017
-OXXO ISLA ANTIGUA 20.63560773 -103.38641934
-OXXO ESTADIO 20.66332885 -103.34797279
-OXXO GAS SUC. 5 DE FEBRERO 5 DE FEBRERO 20.66217271 -103.34589365
-OXXO GAS SUC. CRISTO REY GDL Gobernador Luis G. Curiel 20.64454984 -103.35223196
-OXXO GAS SUC. RIVAS GUILLEN GDM CIRCUNVALACIÓN OBLATOS 20.69031071 -103.30374890
-OXXO SUC 500N6 JUAN ZUBARAN DIVISIÓN DEL NORTE 20.70245688 -103.34184194
-OXXO SUC 501A0 LAFAYETTE GDL FRANCISCO JAVIER GAMBOA 20.67267004 -103.37716381
-OXXO SUC 501J8 HOTEL ONE GDL LÓPEZ MATEOS SUR 20.65756157 -103.39509984
-OXXO SUC 5022B MIGUEL OROZCO GDL JESÚS REYES HEROLES 20.62139355 -103.37942684
-OXXO SUC 502TB HDA DE TALA GDL JOAQUÍN AMARO 20.69309816 -103.29236146
+
+
